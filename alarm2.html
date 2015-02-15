@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Alarm</title>
+</head>
+<body>
+	<input tye="text" placeholder="enter time" id="user_time">
+	<button type="submit" value="submit" id="submit" onclick="startAlarm()">Set Alarm</button>
+	<p id="system_time"></p>
+	<p id ="alarm_time"></p>
+	<p id="time_difference"></p>
+	<p id ="hello"></p>
+
+	<script type="text/javascript">
+		function startAlarm(){
+			var user_time = document.getElementById('user_time').value;
+			re = /^\d{2}:\d{2}?/;
+			if (user_time == " " || !user_time.match(re))
+			{
+				alert("please enter the time in hh:mm (02:30 or 12:30) format");
+				return false;
+			}
+			var user_hour = user_time.substr(0,2);
+			var user_min = user_time.substr(3,2);
+			if(user_min > 59 || user_min < 0){
+
+				alert ("We have only 60 mins in an hour. Please enter mins less than 59");
+				return false;
+			}
+
+			if(user_hour > 12){
+
+				user_hour = user_hour -12;
+				user_time = user_hour + ":" + user_min + "pm";
+			}
+			else {
+				user_time = user_hour + ":" + user_min + "am";
+			}
+
+			document.getElementById('alarm_time').innerHTML = "The alarm will go off at " + user_time;
+
+			var system_time = new Date();
+			var hour = system_time.getHours();
+			var min= system_time.getMinutes();
+			if (min <10){
+				min = "0" + min;
+			}
+			if (hour <10){
+				hour = "0" + hour;
+			}
+			if (hour > 12) {
+				hour = hour-12;
+				todaytime = hour +":" + min + "pm"
+			}
+			else{
+
+				todaytime = hour +":" + min + "am"
+			}
+			
+			document.getElementById('system_time').innerHTML= "The current time is " + todaytime;
+			
+		}
+	</script>
+	<p>The end of the file here</p>
+</body>
+
+	

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Stopwatch</title>
+</head>
+<body>
+	<h1>Stopwatch</h1>
+	<input class="seconds" id="seconds" placeholder="seconds">
+	<button type ="submit" id="submit" onclick="playPause()">Start watch </button>
+	<p class="display" id="display"></p>
+	<audio controls class ="null" id="audio">
+		<source src="http://www.w3schools.com/tags/horse.ogg" type="audio/ogg">
+  		<source src="http://www.w3schools.com/tags/horse.mp3" type="audio/mpeg">
+	</audio>
+
+
+	<script type="text/javascript">
+	var time;
+
+	function startTimer(){
+		secs = document.getElementById("seconds").value;
+		secs = secs * 60;
+		time = secs;
+		console.log(time);
+		var run = function(){playPause()};
+	}
+
+		function playPause(){
+
+			var song = document.getElementsByTagName('audio')[0];
+			
+			if(song.paused){
+				song.play();
+
+			}
+			else{
+				song.pause();}
+		}
+
+	
+
+
+
+	</script>
+</body>
+</html>
